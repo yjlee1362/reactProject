@@ -5,6 +5,7 @@ import { Navbar, Nav, Container, NavDropdown,Card,ListGroup,ListGroupItem } from
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cart from './cart.js';
 import DetailComponent from './detailComponent.js';
+import Assembly from './Assembly.js'
 
 function App() {
   let open = useState(true)
@@ -12,6 +13,8 @@ function App() {
 
   return (
     <div className="App">
+
+      
       <Navbars></Navbars>
       <Banner />
       <span>메인에 광고랑 추천아이템 넣으려고 하는데 이건 카드(방문횟수를 스테이트로 지정하고<br/> 
@@ -35,6 +38,9 @@ function App() {
         </Route>
         <Route path={'/cart'}>
           <Cart />
+        </Route>
+        <Route path={'/assembly'}>
+       <Assembly></Assembly>
         </Route>
       </Switch>
       <Foot></Foot>
@@ -76,6 +82,8 @@ function Banner() {
     <div>
       <span>여기에는 내용이랑 사진과 버튼을 구현할 것입니다. </span>
       <span>버튼은 두개로, 컴포넌트를 닫는 용도와 link를 하기 위함입니다.</span>
+      {/* 슬라이드효과를 준 컴포넌트를 여러개만들지, 아니면 그냥 여러개 
+      보여줄지는 생각해보자 근데 슬라이드효과를주는게 더 있어보일듯 */}
     </div>
   )
 }
@@ -83,7 +91,7 @@ function Banner() {
 function Foot() {
   return (
     <div className='Foot'>
-
+        {/* 제작자 이름과 같은 정보도 추가하자. 가능하면 나한테 메일보내는거나 뭐 이런걸로 */}
       <h3>이 사이트는 포트폴리오를 목적으로 제작되었습니다.<br />
         이 사이트에서 작동하는 모든 것은 가상으로 진행되며, 실제로는 영향이 없습니다.
       </h3>
@@ -97,20 +105,17 @@ function CardS(){
     <Card style={{ width: '18rem' }}>
   <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
   <Card.Body>
-    <Card.Title>Card Title</Card.Title>
-    <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </Card.Text>
+    <Card.Title>제품사진</Card.Title>
   </Card.Body>
   <ListGroup className="list-group-flush">
-    <ListGroupItem>Cras justo odio</ListGroupItem>
-    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-    <ListGroupItem>Vestibulum at eros</ListGroupItem>
+    <ListGroupItem>제품이름</ListGroupItem>
+    <ListGroupItem>제품유형</ListGroupItem>
+    <ListGroupItem>가격</ListGroupItem>
   </ListGroup>
   <Card.Body>
-    <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link>
+    {/* Link에서 onClick을 주는걸로 하자. 버튼으로 만드는것도 나쁘지는 않겟다. */}
+    <Card.Link href="#">자세히보기(DetailComponent로이동)</Card.Link>
+    <Card.Link href="#">장바구니에 담기(state추가하기)</Card.Link>
   </Card.Body>
 </Card>
   )
