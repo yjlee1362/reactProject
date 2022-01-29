@@ -5,11 +5,17 @@ import { Navbar, Nav, Container, NavDropdown,Card,ListGroup,ListGroupItem } from
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cart from './cart.js';
 import DetailComponent from './detailComponent.js';
-import Assembly from './Assembly.js'
+import Assembly from './Assembly.js';
+import { CPU, RAM, SSD } from "./data.js"
 
 function App() {
   let open = useState(true)
-  let id;
+  
+
+  
+  
+  
+
 
   return (
     <div className="App">
