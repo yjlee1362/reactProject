@@ -1,14 +1,75 @@
-function cart(props){
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import {ListGroup ,ListGroupItem} from "react-bootstrap"
 
-    return(
+function cart(props) {
+
+    const Bigdiv = styled.div`
+display : flex;
+position : relative;
+    width : 100%;
+    border-style: solid;
+    width :  1200px;
+    height : 600px;`;
+
+    const RightDiv = styled.div`
+border-style: solid;
+color : black;
+width 300px;
+height : 600px;
+overflow: auto;`;
+
+    const LeftDiv = styled.div`
+border-style: solid;
+color : black;
+width :900px;
+height : 600px;`;
+
+    return (
         <div>
-            <span>여기다가 테이블만들고 스테이트를 활용해서 테이블에 뭘 추가하는 방법을 쓸꺼임</span>
-            <span>그리고 버튼 구현해서 alert창 띄우고 호환성체크하려고 함.</span>
-            <span>테이블 정렬방법도 추가할껀데, 처음에 보여주는게 종류별로할지 id순으로할지 생각해보자</span>
+            <Bigdiv>
+                <RightDiv>
+                <ListGroup>
+                    <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item><ListGroup.Item>Cras justo odio</ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item><ListGroup.Item>Cras justo odio</ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item><ListGroup.Item>Cras justo odio</ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item><ListGroup.Item>Cras justo odio</ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                </ListGroup>
+                </RightDiv>
+                <LeftDiv>
+                    <ListGroup>
+                    <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                </ListGroup>
+                </LeftDiv>
+            </Bigdiv>
+
+
         </div>
     )
 
 }
+
 
 
 
