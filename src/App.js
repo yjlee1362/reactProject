@@ -1,15 +1,31 @@
 
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown,Card,ListGroup,ListGroupItem } from 'react-bootstrap';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cart from './cart.js';
 import DetailComponent from './detailComponent.js';
 import Assembly from './Assembly.js';
 import { CPU, RAM, SSD } from "./data.js"
+import { useSelector } from 'react-redux';
 
 function App() {
   let open = useState(true)
+  const cpu = useSelector((state) => { return state })
+
+
+
+  const [bannerOpen,bannerOpenChange] = useState(true);
+  
+  const everyThing = [...CPU,...RAM,...SSD];
+
+  const cntArray =  everyThing.sort((a,b)=>{return b.cnt - a.cnt})
+  
+
+
+  useEffect(()=>{
+
+  })
   
 
   
@@ -22,7 +38,8 @@ function App() {
 
       
       <Navbars></Navbars>
-      <Banner />
+      {bannerOpen == true ? <Banner bannerOpenChange={bannerOpenChange} ></Banner> : null}
+      
       <span>메인에 광고랑 추천아이템 넣으려고 하는데 이건 카드(방문횟수를 스테이트로 지정하고<br/> 
       방문횟수 많은항목을 보여주게 한번 써보자.</span>
       <span>일단 보드 램 cpu 파워 글카를 한 3개씩 추가하는걸 생각해보자. <br/>
@@ -83,13 +100,14 @@ function Navbars(props) {
   )
 }
 
-function Banner() {
+function Banner(props) {
   return (
     <div>
       <span>여기에는 내용이랑 사진과 버튼을 구현할 것입니다. </span>
       <span>버튼은 두개로, 컴포넌트를 닫는 용도와 link를 하기 위함입니다.</span>
       {/* 슬라이드효과를 준 컴포넌트를 여러개만들지, 아니면 그냥 여러개 
       보여줄지는 생각해보자 근데 슬라이드효과를주는게 더 있어보일듯 */}
+      <button onClick={()=>{props.bannerOpenChange(false)}}>닫기</button>
     </div>
   )
 }
@@ -106,7 +124,16 @@ function Foot() {
   )
 }
 
-function CardS(){
+function CardS(props){
+
+  const cpu = useSelector((state) => { return state })
+  const Array = cpu.recommendList
+  const slicedArray = Array.slice(0,3)
+
+  console.log(slicedArray);
+ 
+
+
   return(
     <Card style={{ width: '18rem' }}>
   <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
@@ -120,6 +147,7 @@ function CardS(){
   </ListGroup>
   <Card.Body>
     {/* Link에서 onClick을 주는걸로 하자. 버튼으로 만드는것도 나쁘지는 않겟다. */}
+    {/* 추가로 cnt 에 따라서 뭐 하나씩 넣는걸로해보자 그거에 맞는 스테이트를넣어볼까 */}
     <Card.Link href="#">자세히보기(DetailComponent로이동)</Card.Link>
     <Card.Link href="#">장바구니에 담기(state추가하기)</Card.Link>
   </Card.Body>
