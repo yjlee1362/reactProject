@@ -29,6 +29,23 @@ function RadioBox(props){
         {/* 라디오박스 좀 많이넣을까?싶다. 하나로 map함수쓰기에는 뭔가 많이 애매하다. */}
 
     </Radios>
+    // function App() {
+    //     const subject2 = 'info'
+      
+    //     return (
+    //      <div className="App">
+    //        {
+    //          {
+    //             info: <p>상품정보</p>,
+    //             shipping: <p>배송관련</p>,
+    //             refund: <p>환불약관</p>
+    //           }[subject2]
+    //         }
+            
+    //       }
+    //       </div>
+    //       )
+    //   }
 
     )
 };
