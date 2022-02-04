@@ -1,13 +1,13 @@
 
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Container, NavDropdown, Card, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Card, ListGroup, ListGroupItem, Row, Col,Button } from 'react-bootstrap';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import Cart from './cart.js';
 import DetailComponent from './detailComponent.js';
 import Assembly from './Assembly.js';
 import { CPU, RAM, SSD } from "./data.js"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
@@ -130,8 +130,14 @@ function Foot() {
 function CardS(props) {
 
   const cpu = useSelector((state) => { return state })
+  const disPatch = useDispatch();
   const Array = cpu.recommendList
-  const slicedArray = Array.slice(0, 4)
+  const slicedArray = Array.slice(0, 4);
+  const h = useHistory();
+
+  console.log(cpu)
+
+  
 
 
 
@@ -143,7 +149,7 @@ function CardS(props) {
         {slicedArray.map((a, i) => (
           <Col>
             <Card style={{ width: '18rem', marginLeft: 'auto', marginRight: 'auto' }}>
-              <Card.Img variant="top" src={"imgs./ram.1.jpg"} />
+              <Card.Img variant="top" src={a.imgl} />
               {/* 리액트에 이미지넣는방법은 기존html과 다른듯 하다. 
             data에있는거 전부 수정해야겟다. src폴더가아니라public에 다시만들어야지 */}
               <Card.Body>
@@ -157,8 +163,9 @@ function CardS(props) {
               <Card.Body>
                 {/* Link에서 onClick을 주는걸로 하자. 버튼으로 만드는것도 나쁘지는 않겟다. */}
                 {/* 추가로 cnt 에 따라서 뭐 하나씩 넣는걸로해보자 그거에 맞는 스테이트를넣어볼까 */}
-                <Card.Link href="#">자세히보기(DetailComponent로이동)</Card.Link>
-                <Card.Link href="#">장바구니에 담기(state추가하기)</Card.Link>
+                <Button variant="dark" onClick={()=>{h.push(`/detail/${a.id}`) }}>자세히보기</Button>{' '}
+                <Button variant="dark" onClick={()=>{disPatch({type:'addCart',payload:{id :a.id, title: a.title}});console.log(cpu.cartList);}}>담기</Button>{' '}
+                
               </Card.Body>
             </Card>
           </Col>
