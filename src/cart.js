@@ -1,19 +1,29 @@
 import React from "react";
 import styled from 'styled-components';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { useSelector } from "react-redux";
 
 
 function Cart(props){
 
+
+    const selector = useSelector((state)=>{return state});
+
+    const cartList = selector.cartList;
+
     return(<div>
-            <RadioBox></RadioBox>
-            <ChoicedArea/>
+            <RadioBox ></RadioBox>
+            <ChoicedArea cartList={cartList}/>
     </div>
 
     )
 };
 
 function RadioBox(props){
+
+
+
+
     const Radios = styled.div`
     width :300px;
     margin : auto;
@@ -70,11 +80,9 @@ margin : auto;`
     return(
         <Grouped>
         <ListGroup>
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-        <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-        <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+        {props.cartList.map((a,i)=>{return(
+            <ListGroup.Item>{a.title}</ListGroup.Item>
+        )})}       
       </ListGroup>
         </Grouped>
     )

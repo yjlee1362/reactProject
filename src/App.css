@@ -38,11 +38,13 @@
 }
 
 .Foot{
-
+  
+  
+  bottom : 0; 
   margin : auto;
   padding: 0%;
   font-family: '바탕';
-  display: flex;
+  
   justify-content: center;
   align-items: centet;
   ;

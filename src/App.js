@@ -135,7 +135,7 @@ function CardS(props) {
   const slicedArray = Array.slice(0, 4);
   const h = useHistory();
 
-  console.log(cpu)
+ 
 
   
 

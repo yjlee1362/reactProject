@@ -10,10 +10,12 @@ const cntArray =  everyThing.sort((a,b)=>{return b.cnt - a.cnt});
 const emptyArray = [];
 
 
-function recommendList (state = cntArray,act){
-if(act === "cnt++"){
-    const plusArray = [...cntArray];
-    plusArray[act.payload].cnt++
+function recommendList (state = everyThing,act){
+if(act.type === "cnt++"){
+    const plusArray = [...state];
+    console.log(plusArray[act.payload]
+        )
+    
     return plusArray
 } 
     return cntArray
@@ -25,7 +27,7 @@ function cpuFunction(state = CPUs,act){
 }
 
 function cartList (state = emptyArray,act){
-    if(act === 'addCart'){
+    if(act.type === 'addCart'){
         const copyArray = [...state];
         copyArray.push(act.payload)
         return copyArray        
