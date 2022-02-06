@@ -144,12 +144,13 @@ function CardS(props) {
 
 
   return (
-    <div>
+    <div style={{marginTop:'30px'}}>
+      <h4>많이 본 상품</h4>
       <Row xs={"auto"} md={"auto"} className="g-4">
         {slicedArray.map((a, i) => (
           <Col>
             <Card style={{ width: '18rem', marginLeft: 'auto', marginRight: 'auto' }}>
-              <Card.Img variant="top" src={a.imgl} />
+              <Card.Img variant="top" style={{height : '100%'}} src={a.imgl} />
               {/* 리액트에 이미지넣는방법은 기존html과 다른듯 하다. 
             data에있는거 전부 수정해야겟다. src폴더가아니라public에 다시만들어야지 */}
               <Card.Body>
@@ -161,8 +162,6 @@ function CardS(props) {
                 <ListGroupItem>{a.price.toLocaleString()}원</ListGroupItem>
               </ListGroup>
               <Card.Body>
-                {/* Link에서 onClick을 주는걸로 하자. 버튼으로 만드는것도 나쁘지는 않겟다. */}
-                {/* 추가로 cnt 에 따라서 뭐 하나씩 넣는걸로해보자 그거에 맞는 스테이트를넣어볼까 */}
                 <Button variant="dark" onClick={()=>{h.push(`/detail/${a.id}`) }}>자세히보기</Button>{' '}
                 <Button variant="dark" onClick={()=>{disPatch({type:'addCart',payload:{id :a.id, title: a.title}});console.log(cpu.cartList);}}>담기</Button>{' '}
                 
