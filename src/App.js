@@ -40,14 +40,7 @@ function App() {
       <Navbars></Navbars>
       <Switch>
         <Route exact path={`/`}>
-          {bannerOpen == true ? <Banner bannerOpenChange={bannerOpenChange} ></Banner> : null}
-
-          <span>메인에 광고랑 추천아이템 넣으려고 하는데 이건 카드(방문횟수를 스테이트로 지정하고<br />
-            방문횟수 많은항목을 보여주게 한번 써보자.</span>
-          <span>일단 보드 램 cpu 파워 글카를 한 3개씩 추가하는걸 생각해보자. <br />
-            아직 서버 다룰줄 모르니까 일단 파워하드코딩해야겟지 이미지도 조금 따두자.</span>
-          <br />
-
+          {bannerOpen == true ? <Banner bannerOpenChange={bannerOpenChange} ></Banner> : null}        
           <div style={{ display: 'flex' }}>
             <CardS></CardS>
           </div>
@@ -57,7 +50,7 @@ function App() {
 
 
 
-        <Route path={`/detail`}>
+        <Route path={`/detail:id`}>
           <DetailComponent>
 
           </DetailComponent>
@@ -134,15 +127,6 @@ function CardS(props) {
   const Array = cpu.recommendList
   const slicedArray = Array.slice(0, 4);
   const h = useHistory();
-
- 
-
-  
-
-
-
-
-
   return (
     <div style={{marginTop:'30px'}}>
       <h4>많이 본 상품</h4>
@@ -150,9 +134,7 @@ function CardS(props) {
         {slicedArray.map((a, i) => (
           <Col>
             <Card style={{ width: '18rem', marginLeft: 'auto', marginRight: 'auto' }}>
-              <Card.Img variant="top" style={{height : '100%'}} src={a.imgl} />
-              {/* 리액트에 이미지넣는방법은 기존html과 다른듯 하다. 
-            data에있는거 전부 수정해야겟다. src폴더가아니라public에 다시만들어야지 */}
+              <Card.Img variant="top" style={{height : '100%'}} src={a.imgl} />            
               <Card.Body>
                 <Card.Title></Card.Title>
               </Card.Body>
@@ -163,8 +145,8 @@ function CardS(props) {
               </ListGroup>
               <Card.Body>
                 <Button variant="dark" onClick={()=>{h.push(`/detail/${a.id}`) }}>자세히보기</Button>{' '}
-                <Button variant="dark" onClick={()=>{disPatch({type:'addCart',payload:{id :a.id, title: a.title}});console.log(cpu.cartList);}}>담기</Button>{' '}
-                
+                <Button variant="dark" onClick={()=>{disPatch({
+                  type:'addCart',payload:{id :a.id, title: a.title}})}}>담기</Button>{' '}                
               </Card.Body>
             </Card>
           </Col>

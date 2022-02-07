@@ -12,9 +12,10 @@ const emptyArray = [];
 
 function recommendList (state = everyThing,act){
 if(act.type === "cnt++"){
+    
     const plusArray = [...state];
-    console.log(plusArray[act.payload]
-        )
+    console.log(plusArray)
+    console.log(act.payload)
     
     return plusArray
 } 
