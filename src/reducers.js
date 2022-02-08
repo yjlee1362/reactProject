@@ -14,10 +14,11 @@ function recommendList (state = everyThing,act){
 if(act.type === "cnt++"){
     
     const plusArray = [...state];
-    console.log(plusArray)
-    console.log(act.payload)
+    plusArray[act.payload].cnt++;
+    const recommendList = plusArray.sort(((a,b)=>{return b.cnt - a.cnt}))
+    const fList = recommendList.sort((a,b)=>{return a.id-b.id})
     
-    return plusArray
+    return fList
 } 
     return cntArray
 

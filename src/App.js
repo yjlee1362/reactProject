@@ -22,7 +22,7 @@ function App() {
   const cntArray = everyThing.sort((a, b) => { return b.cnt - a.cnt })
 
 
-
+  console.log(cntArray);
   useEffect(() => {
 
   })
@@ -50,7 +50,7 @@ function App() {
 
 
 
-        <Route path={`/detail:id`}>
+        <Route path={`/detail/:id`}>
           <DetailComponent>
 
           </DetailComponent>
@@ -99,7 +99,7 @@ function Navbars(props) {
 function Banner(props) {
   return (
     <div>
-      <span>여기에는 내용이랑 사진과 버튼을 구현할 것입니다. </span>
+      <span>할인상품에 관해서 뭐 넣기 </span>
       <span>버튼은 두개로, 컴포넌트를 닫는 용도와 link를 하기 위함입니다.</span>
       {/* 슬라이드효과를 준 컴포넌트를 여러개만들지, 아니면 그냥 여러개 
       보여줄지는 생각해보자 근데 슬라이드효과를주는게 더 있어보일듯 */}
@@ -127,6 +127,7 @@ function CardS(props) {
   const Array = cpu.recommendList
   const slicedArray = Array.slice(0, 4);
   const h = useHistory();
+  console.log(slicedArray)
   return (
     <div style={{marginTop:'30px'}}>
       <h4>많이 본 상품</h4>
