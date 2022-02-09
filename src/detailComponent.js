@@ -61,5 +61,16 @@ function Compare(props){
 
 }
 
+function Commnet(props){
+
+    //테이블과 스테이트로 구성하기. 버튼도 하나(댓글달기)
+
+    return(
+        <div>
+
+        </div>
+    )
+}
+
 
 export default DetailComponent

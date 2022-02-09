@@ -61,6 +61,11 @@ function App() {
         <Route path={'/assembly'}>
           <Assembly></Assembly>
         </Route>
+
+        {/* 주문창 만들기
+        주문창은 카트에 담은것 들 중 체크박스를 통해서 추가하고 
+        수량이랑 price값 더한걸로 하기  */}
+
       </Switch>
       <Foot></Foot>
 
@@ -107,6 +112,22 @@ function Banner(props) {
     </div>
   )
 }
+
+
+function GotoAssemble (props){
+
+ const h = useHistory();
+ 
+//  배너랑 비슷하게 하는데 사이트소개하듯이 뭐 하고 링크를 통해 조립쪽으로갈수있게
+
+  return(
+    <div>
+      <button onClick={()=>{h.push('/assembly')}}></button>
+    </div>
+  )
+
+}
+
 
 function Foot() {
   return (
