@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function Assembly(props){
 
     return(<div>
+        <Cart/>
             <RadioBox></RadioBox>
             <ChoicedArea/>
     </div>
@@ -67,19 +68,18 @@ function ChoiceArea(props){
 
 function ChoicedArea(props){
 
+    const cpu = useSelector((state) => { return state });
+
 let Grouped = styled.div`
 width :500px;
 margin : auto;`
 
     return(
         <Grouped>
+            
         <ListGroup>
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-        <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-        <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-      </ListGroup>
+        {cpu.recommendList.title}
+        </ListGroup>
         </Grouped>
     )
 }
@@ -101,7 +101,7 @@ margin : auto;`
 //     )
 //   } 
 
-export default Assembly;
+
 
 
 function Cart(props) {
@@ -138,7 +138,8 @@ height : 600px;`;
             <Bigdiv>
                 <LeftDiv>
                     <div>
-                        체크박스넣을거임 그 열거형함수로 써볼까함.
+                        체크박스넣을거임 그 열거형함수로 써볼까함.<br/>
+                        밑에있는건 이제 css로 조정하기
                     </div>
                 <ListGroup>
                 <SellList></SellList>
@@ -146,9 +147,11 @@ height : 600px;`;
                 </ListGroup>
                 </LeftDiv>
                 <RightDiv>
-                    <ListGroup>                
-                   
-                </ListGroup>
+                    <span>여기다가는 선택된 state랑 누르면 왼쪽께 바뀌도록</span>
+                {cpu.recommendList.map((a,i)=>{return(
+                    <div>{a.title}</div>
+                )})}  
+                
                 </RightDiv>
             </Bigdiv>
 
@@ -169,12 +172,25 @@ function SellList(props){
     return(
         <div>
             {arraycpu.map((a,i)=>{return(<ListGroup.Item key ={i}>
-                <div>
-                <span>{arraycpu[i].title}</span>
-                </div>
+                <tr>
+                    <td colSpan={2} rowSpan={2}><img src={arraycpu[i].imgl}></img></td>
+                    
+                    <td>{arraycpu[i].price}원</td>
+                    <td>제조사 :{arraycpu[i].manu}</td>
+                </tr>
+                <tr>
+                    
+                    
+                    <td>종류:{arraycpu[i].kinds}</td>
+                    <td><button>담기</button></td>
+                </tr>
+                
+                
                 </ListGroup.Item>
             )})}
         </div>
     )
 //뭐 보여줄지는 여기서 고르는데 스테이트를 변경하는 방법으로 뭘보여줄건지 바꿀예정
 }
+
+export default Assembly;
