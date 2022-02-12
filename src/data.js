@@ -67,4 +67,6 @@ const SSD = [
 ]
 
 
+
+
 export { CPU, RAM, SSD };

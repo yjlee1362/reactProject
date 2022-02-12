@@ -148,7 +148,6 @@ function CardS(props) {
   const Array = cpu.recommendList
   const slicedArray = Array.slice(0, 4);
   const h = useHistory();
-  console.log(slicedArray)
   return (
     <div style={{marginTop:'30px'}}>
       <h4>많이 본 상품</h4>
@@ -168,7 +167,9 @@ function CardS(props) {
               <Card.Body>
                 <Button variant="dark" onClick={()=>{h.push(`/detail/${a.id}`) }}>자세히보기</Button>{' '}
                 <Button variant="dark" onClick={()=>{disPatch({
-                  type:'addCart',payload:{id :a.id, title: a.title}})}}>담기</Button>{' '}                
+                  type:'addCart',payload:{id :a.id, title: a.title}})}}>담기</Button>{' '}     
+
+                  {/* 이 버튼을 사러가기로 변경하고 push를 뒤에 추가해서 단일품목사는거처럼 해보기            */}
               </Card.Body>
             </Card>
           </Col>

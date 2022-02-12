@@ -4,6 +4,7 @@ import { useSelector , useDispatch, connect } from "react-redux";
 import styled from "styled-components";
 import {ListGroup ,ListGroupItem} from "react-bootstrap"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 
 
@@ -123,7 +124,7 @@ position : relative;
     const LeftDiv = styled.div`
 border-style: solid;
 color : black;
-width 600px;
+width 900px;
 height : 600px;
 overflow: auto;`;
 
@@ -148,7 +149,7 @@ height : 600px;`;
                 </LeftDiv>
                 <RightDiv>
                     <span>여기다가는 선택된 state랑 누르면 왼쪽께 바뀌도록</span>
-                {cpu.recommendList.map((a,i)=>{return(
+                {cpu.choicedList.map((a,i)=>{return(
                     <div>{a.title}</div>
                 )})}  
                 
@@ -163,7 +164,10 @@ height : 600px;`;
 
 function SellList(props){
     const cpu = useSelector((state) => { return state });
+    const disPatch = useDispatch()
+
     const arraycpu = cpu.cpuFunction
+    const history = useHistory();
 
     const SellListDiv = styled.div`
     
@@ -172,17 +176,17 @@ function SellList(props){
     return(
         <div>
             {arraycpu.map((a,i)=>{return(<ListGroup.Item key ={i}>
-                <tr>
+                <tr >
                     <td colSpan={2} rowSpan={2}><img src={arraycpu[i].imgl}></img></td>
                     
                     <td>{arraycpu[i].price}원</td>
-                    <td>제조사 :{arraycpu[i].manu}</td>
+                    <td><button onClick={()=>{{history.push(`/detail/${a.id}`)}}}>자세히보기</button></td>
                 </tr>
                 <tr>
                     
                     
-                    <td>종류:{arraycpu[i].kinds}</td>
-                    <td><button>담기</button></td>
+                    <td as={Link} to={`/detail/${a.id}`}>{arraycpu[i].title}</td>
+                    <td><button onClick={()=>{disPatch({type:'addchoicedList',payload:a})}}>담기</button></td>
                 </tr>
                 
                 

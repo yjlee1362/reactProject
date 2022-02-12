@@ -37,7 +37,24 @@ function cartList (state = emptyArray,act){
   return state  
 }
 
+function choicedList(state=[],act){
 
-const store = createStore(combineReducers({cpuFunction,recommendList,cartList}))
+if(act.type==='addchoicedList'){
+    const copyState = [...state];
+    copyState.push(act.payload);
+    //같은 종류는 1개씩만 들어갈 수 있도록 하기 배열요소중 겹치는거 제외하는식으로 하기
+    console.log(copyState)
+    return copyState
+}   else {return state}
+
+}
+
+
+
+//댓글달기 기능을 스테이트랑 배열에 push하고 그걸 랜더링하는걸로 구현해보기
+//별점이랑 좋아요도 한번
+
+
+const store = createStore(combineReducers({cpuFunction,recommendList,cartList,choicedList}))
 
 export default store;
