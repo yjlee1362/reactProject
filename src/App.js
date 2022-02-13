@@ -1,11 +1,12 @@
 
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Container, NavDropdown, Card, ListGroup, ListGroupItem, Row, Col,Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Card, ListGroup, ListGroupItem, Row, Col, Button } from 'react-bootstrap';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import Cart from './cart.js';
 import DetailComponent from './detailComponent.js';
 import Assembly from './Assembly.js';
+import Order from './order.js'
 import { CPU, RAM, SSD } from "./data.js"
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -40,7 +41,7 @@ function App() {
       <Navbars></Navbars>
       <Switch>
         <Route exact path={`/`}>
-          {bannerOpen == true ? <Banner bannerOpenChange={bannerOpenChange} ></Banner> : null}        
+          {bannerOpen == true ? <Banner bannerOpenChange={bannerOpenChange} ></Banner> : null}
           <div style={{ display: 'flex' }}>
             <CardS></CardS>
           </div>
@@ -60,6 +61,10 @@ function App() {
         </Route>
         <Route path={'/assembly'}>
           <Assembly></Assembly>
+        </Route>
+
+        <Route path={'/order'}>
+          <Order></Order>
         </Route>
 
         {/* 주문창 만들기
@@ -114,15 +119,15 @@ function Banner(props) {
 }
 
 
-function GotoAssemble (props){
+function GotoAssemble(props) {
 
- const h = useHistory();
- 
-//  배너랑 비슷하게 하는데 사이트소개하듯이 뭐 하고 링크를 통해 조립쪽으로갈수있게
+  const h = useHistory();
 
-  return(
+  //  배너랑 비슷하게 하는데 사이트소개하듯이 뭐 하고 링크를 통해 조립쪽으로갈수있게
+
+  return (
     <div>
-      <button onClick={()=>{h.push('/assembly')}}></button>
+      <button onClick={() => { h.push('/assembly') }}></button>
     </div>
   )
 
@@ -149,13 +154,13 @@ function CardS(props) {
   const slicedArray = Array.slice(0, 4);
   const h = useHistory();
   return (
-    <div style={{marginTop:'30px'}}>
+    <div style={{ marginTop: '30px' }}>
       <h4>많이 본 상품</h4>
       <Row xs={"auto"} md={"auto"} className="g-4">
         {slicedArray.map((a, i) => (
           <Col>
             <Card style={{ width: '18rem', marginLeft: 'auto', marginRight: 'auto' }}>
-              <Card.Img variant="top" style={{height : '100%'}} src={a.imgl} />            
+              <Card.Img variant="top" style={{ height: '100%' }} src={a.imgl} />
               <Card.Body>
                 <Card.Title></Card.Title>
               </Card.Body>
@@ -165,11 +170,14 @@ function CardS(props) {
                 <ListGroupItem>{a.price.toLocaleString()}원</ListGroupItem>
               </ListGroup>
               <Card.Body>
-                <Button variant="dark" onClick={()=>{h.push(`/detail/${a.id}`) }}>자세히보기</Button>{' '}
-                <Button variant="dark" onClick={()=>{disPatch({
-                  type:'addCart',payload:{id :a.id, title: a.title}})}}>담기</Button>{' '}     
+                <Button variant="dark" onClick={() => { h.push(`/detail/${a.id}`) }}>자세히보기</Button>{' '}
+                <Button variant="dark" onClick={() => {
+                  disPatch({
+                    type: 'addCart', payload: { id: a.id, title: a.title }
+                  })
+                }}>담기</Button>{' '}
 
-                  {/* 이 버튼을 사러가기로 변경하고 push를 뒤에 추가해서 단일품목사는거처럼 해보기            */}
+                {/* 이 버튼을 사러가기로 변경하고 push를 뒤에 추가해서 단일품목사는거처럼 해보기            */}
               </Card.Body>
             </Card>
           </Col>

@@ -3,58 +3,74 @@ import { CPU, RAM, SSD } from "./data.js"
 
 const CPUs = CPU;
 
-const everyThing = [...CPU,...RAM,...SSD];
+const everyThing = [...CPU, ...RAM, ...SSD];
 
-const cntArray =  everyThing.sort((a,b)=>{return b.cnt - a.cnt});
+const cntArray = everyThing.sort((a, b) => { return b.cnt - a.cnt });
 
 const emptyArray = [];
 
 
-function recommendList (state = everyThing,act){
-if(act.type === "cnt++"){
-    
-    const plusArray = [...state];
-    plusArray[act.payload].cnt++;
-    const recommendList = plusArray.sort(((a,b)=>{return b.cnt - a.cnt}))
-    const fList = recommendList.sort((a,b)=>{return a.id-b.id})
-    
-    return fList
-} 
+function recommendList(state = everyThing, act) {
+    if (act.type === "cnt++") {
+        const plusArray = [...state];
+        plusArray[act.payload].cnt++;
+        const recommendList = plusArray.sort(((a, b) => { return b.cnt - a.cnt }))
+        const fList = recommendList.sort((a, b) => { return a.id - b.id })
+
+        return fList
+    }
     return cntArray
 
 }
 
-function cpuFunction(state = CPUs,act){
+function cpuFunction(state = CPUs, act) {
+    return state
+}
+//장바구니에추가
+function cartList(state = emptyArray, act) {
+    if (act.type === 'addCart') {
+        const copyArray = [...state];
+        copyArray.push(act.payload);
+        return copyArray
+    } else if (act.type === 'orderCart') {//이부분 뭔가 이상하게 안된다. 질문중이니까 나중에 될거같다
+        const copyArray = [...state, choicedList]
+        return copyArray
+    }
+    else { return state }
+}
+
+
+
+//조립한거에 추가
+function choicedList(state = [], act) {
+
+    if (act.type === 'addchoicedList') {
+        const copyArray = [...state];
+        const overlapped = copyArray.findIndex((a) => {
+            return a.kinds === act.payload.kinds
+        })
+        if (overlapped != -1) {
+            copyArray.splice(overlapped, 1);
+            copyArray.push(act.payload);
+            return copyArray
+        } else {
+            copyArray.push(act.payload)
+            return copyArray
+        }
+    }
     return state
 }
 
-function cartList (state = emptyArray,act){
-    if(act.type === 'addCart'){
-        const copyArray = [...state];
-        copyArray.push(act.payload)
-        return copyArray        
-    }
-  return state  
-}
 
-function choicedList(state=[],act){
 
-if(act.type==='addchoicedList'){
-    const copyState = [...state];
-    copyState.push(act.payload);
-    //같은 종류는 1개씩만 들어갈 수 있도록 하기 배열요소중 겹치는거 제외하는식으로 하기
-    console.log(copyState)
-    return copyState
-}   else {return state}
-
-}
-
+//용도용에 맞춘 완본체형으로 하나 맞춰두고 거기에 맞춘 형태로 한번 해보기
+//ex) choicedList를 만들기 위한 하나의 배열을 만들고 조립으로 이동 후 거기서 요소하나하나바꿔보기
 
 
 //댓글달기 기능을 스테이트랑 배열에 push하고 그걸 랜더링하는걸로 구현해보기
 //별점이랑 좋아요도 한번
 
 
-const store = createStore(combineReducers({cpuFunction,recommendList,cartList,choicedList}))
+const store = createStore(combineReducers({ cpuFunction, recommendList, cartList, choicedList }))
 
 export default store;

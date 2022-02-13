@@ -111,7 +111,10 @@ function Cart(props) {
     
     const history = useHistory();
 
+    const disPatch = useDispatch();
+
     const Bigdiv = styled.div`
+    
     
     
 display : flex;
@@ -152,7 +155,7 @@ height : 600px;`;
                 {cpu.choicedList.map((a,i)=>{return(
                     <div>{a.title}</div>
                 )})}  
-                
+                <button onClick={()=>{disPatch({type:'orderCart'});history.push('/order')}}>조립끝 사러가기</button>
                 </RightDiv>
             </Bigdiv>
 
