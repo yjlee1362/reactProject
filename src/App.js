@@ -92,7 +92,7 @@ function Navbars(props) {
             <Nav.Link as={Link} to="/assembly">pc조립</Nav.Link>
             <Nav.Link as={Link} to="/cart">장바구니</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/order">test용 주문창</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
@@ -185,6 +185,30 @@ function CardS(props) {
       </Row>
     </div>
 
+  )
+}
+
+function RecommendPc(props){
+
+  const state = useSelector((state)=>state)
+  const disPatch = useDispatch();
+  const h = useHistory();
+  const recommendPcOne = state.cpuFunction;
+
+  const imgSrcIndex = recommendPcOne.findIndex((e)=>{return e.kinds==='case'})
+  const imgSrc = recommendPcOne[imgSrcIndex].imgl
+
+
+
+  return(
+    <div>
+
+    {recommendPcOne.map((a,i)=>{return(<span>{a.title}<br/></span>)})}
+    <img src={imgSrc}/>
+    <button onClick={()=>{h.push('/assembly')}}>사러가기</button>
+    {/* disPatch요소로 할 액션하나 만들어 두기(조립할곳에서 할걸로) */}
+
+    </div>
   )
 }
 

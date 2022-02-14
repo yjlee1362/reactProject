@@ -32,8 +32,8 @@ function cartList(state = emptyArray, act) {
         const copyArray = [...state];
         copyArray.push(act.payload);
         return copyArray
-    } else if (act.type === 'orderCart') {//이부분 뭔가 이상하게 안된다. 질문중이니까 나중에 될거같다
-        const copyArray = [...state, choicedList]
+    } else if (act.type === 'orderCart') {
+        const copyArray = [...state, ...act.payload]
         return copyArray
     }
     else { return state }

@@ -113,6 +113,31 @@ function Cart(props) {
 
     const disPatch = useDispatch();
 
+
+    const compatibility = ()=>{
+        const array = [...cpu.recommendList];
+        const mainIndex = array.findIndex((a)=>{return a.kinds=== 'main'});
+        
+//         조립리스트에서 메인보드,cpu,ram,그래픽카드,파워 등등을 요소별로 찾고?
+
+// 뭐가 같은지 안같은지를 전부 if문으로 돌리기 뭔가 하드코딩같을 수 있지만 이게 가장 확실하긴 할듯
+
+// 그럼 findIndex 를 해서 배열을 찾은 다음에
+
+// cpu소켓 === 메인보드 소켓
+// cpu pcie === 메인보드 pcie === ssd pcie 
+// 파워 그래픽카드 전력량
+// cpu세대 램ddr
+// 메인보드소켓, 램ddr소켓
+
+// 여기서 안맞는게 있으면 alret 창 띄우기.
+
+ 
+        
+
+    }
+
+
     const Bigdiv = styled.div`
     
     
@@ -155,7 +180,7 @@ height : 600px;`;
                 {cpu.choicedList.map((a,i)=>{return(
                     <div>{a.title}</div>
                 )})}  
-                <button onClick={()=>{disPatch({type:'orderCart'});history.push('/order')}}>조립끝 사러가기</button>
+                <button onClick={()=>{disPatch({type:'orderCart',payload:cpu.choicedList});history.push('/order')}}>조립끝 사러가기</button>
                 </RightDiv>
             </Bigdiv>
 
