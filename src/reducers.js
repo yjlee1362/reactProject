@@ -49,7 +49,7 @@ function choicedList(state = [], act) {
         const overlapped = copyArray.findIndex((a) => {
             return a.kinds === act.payload.kinds
         })
-        if (overlapped != -1) {
+        if (overlapped != -1) {//해당 항목의 부품이 이미 있다면 교체
             copyArray.splice(overlapped, 1);
             copyArray.push(act.payload);
             return copyArray
@@ -61,7 +61,16 @@ function choicedList(state = [], act) {
     return state
 }
 
+function comment(state=[],act){
+    if(act.type = 'commentAdd'){
+        const copyArray = [...state];
+        copyArray.push(act.payload);
+        return copyArray
+    }
+return state
 
+
+}
 
 //용도용에 맞춘 완본체형으로 하나 맞춰두고 거기에 맞춘 형태로 한번 해보기
 //ex) choicedList를 만들기 위한 하나의 배열을 만들고 조립으로 이동 후 거기서 요소하나하나바꿔보기
@@ -71,6 +80,6 @@ function choicedList(state = [], act) {
 //별점이랑 좋아요도 한번
 
 
-const store = createStore(combineReducers({ cpuFunction, recommendList, cartList, choicedList }))
+const store = createStore(combineReducers({ cpuFunction, recommendList, cartList, choicedList,comment }))
 
 export default store;

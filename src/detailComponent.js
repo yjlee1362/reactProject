@@ -93,6 +93,9 @@ const history = useHistory();
 
 function Commnet(props) {
 
+    const state = useSelector((state)=>{return state});
+    const commentState = state.comment
+
     //div여러개로스테이트로 구성하기. 버튼도 하나(댓글달기)
     //별점넣는것도 구상하기.
     return (
