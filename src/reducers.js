@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from "redux"
-import { CPU, RAM, SSD } from "./data.js"
+import { CPU, RAM, SSD, mainBoard, HDD} from "./data.js"
 
 const CPUs = CPU;
 

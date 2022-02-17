@@ -188,25 +188,25 @@ function CardS(props) {
   )
 }
 
-function RecommendPc(props){
+function RecommendPc(props) {
 
-  const state = useSelector((state)=>state)
+  const state = useSelector((state) => state)
   const disPatch = useDispatch();
   const h = useHistory();
   const recommendPcOne = state.cpuFunction;
 
-  const imgSrcIndex = recommendPcOne.findIndex((e)=>{return e.kinds==='case'})
+  const imgSrcIndex = recommendPcOne.findIndex((e) => { return e.kinds === 'case' })
   const imgSrc = recommendPcOne[imgSrcIndex].imgl
 
 
 
-  return(
+  return (
     <div>
 
-    {recommendPcOne.map((a,i)=>{return(<span>{a.title}<br/></span>)})}
-    <img src={imgSrc}/>
-    <button onClick={()=>{h.push('/assembly')}}>사러가기</button>
-    {/* disPatch요소로 할 액션하나 만들어 두기(조립할곳에서 할걸로) */}
+      {recommendPcOne.map((a, i) => { return (<span>{a.title}<br /></span>) })}
+      <img src={imgSrc} />
+      <button onClick={() => { h.push('/assembly') }}>사러가기</button>
+      {/* disPatch요소로 할 액션하나 만들어 두기(조립할곳에서 할걸로) */}
 
     </div>
   )
