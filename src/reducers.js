@@ -68,9 +68,24 @@ function comment(state=[],act){
         return copyArray
     }
 return state
+}
+
+function price(state=0,act){
+if(act.type ==='priceAdd'){
+    let sum = 0;
+    act.payload.forEach((item)=>{sum+=item.price});
+    return sum
 
 
 }
+    return state
+}
+
+  //     let sumsum = 0;
+    // num10.forEach( (item) => {
+    //   sumsum += item;
+    // });
+  
 
 //용도용에 맞춘 완본체형으로 하나 맞춰두고 거기에 맞춘 형태로 한번 해보기
 //ex) choicedList를 만들기 위한 하나의 배열을 만들고 조립으로 이동 후 거기서 요소하나하나바꿔보기
@@ -80,6 +95,6 @@ return state
 //별점이랑 좋아요도 한번
 
 
-const store = createStore(combineReducers({ cpuFunction, recommendList, cartList, choicedList,comment }))
+const store = createStore(combineReducers({ cpuFunction, recommendList, cartList, choicedList,comment,price }))
 
 export default store;

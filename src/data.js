@@ -135,6 +135,11 @@ const POWER =[
     {   }
 ]
 
+const GPU = [
+
+    {  }
+]
+
 
 
 

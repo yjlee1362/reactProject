@@ -1,64 +1,73 @@
 
-import React from "react";
-import { useSelector , useDispatch, connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch, connect } from "react-redux";
 import styled from "styled-components";
-import {ListGroup ,ListGroupItem} from "react-bootstrap"
+import { ListGroup, ListGroupItem } from "react-bootstrap"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 
 
-function Assembly(props){
+function Assembly(props) {
+    const state = useSelector((state)=>{return state})
+    const AchoicedList = state.choicedList
+    const disPatch = useDispatch();
 
-    return(<div>
-        <Cart/>
-            <RadioBox></RadioBox>
-            <ChoicedArea/>
+    useEffect(()=>{disPatch({type:'priceAdd',payload:state.choicedList});
+    console.log('on')
+
+    },[AchoicedList])
+
+
+    return (<div>
+        <Cart />
+        <RadioBox></RadioBox>
+        <ChoicedArea />
     </div>
 
     )
 };
 
-function RadioBox(props){
+function RadioBox(props) {
     const Radios = styled.div`
     width :300px;
     margin : auto;
     `
 
-    return(<Radios>
+    return (<Radios>
         <input type='radio' id='radio1' name="test" />테스트1
-        <input type='radio' id='radio2' name="test"/>테스트2
-        <input type='radio' id='radio3' name="test"/>테스트3
-        <br/>
+        <input type='radio' id='radio2' name="test" />테스트2
+        <input type='radio' id='radio3' name="test" />테스트3
+        <br />
         <input type='radio' id='radio1' name="test1" />테스트1
-        <input type='radio' id='radio2' name="test1"/>테스트2
-        <input type='radio' id='radio3' name="test1"/>테스트3
+        <input type='radio' id='radio2' name="test1" />테스트2
+        <input type='radio' id='radio3' name="test1" />테스트3
         {/* 라디오박스 좀 많이넣을까?싶다. 하나로 map함수쓰기에는 뭔가 많이 애매하다. */}
 
     </Radios>
-    // function App() {
-    //     const subject2 = 'info'
-      
-    //     return (
-    //      <div className="App">
-    //        {
-    //          {
-    //             info: <p>상품정보</p>,
-    //             shipping: <p>배송관련</p>,
-    //             refund: <p>환불약관</p>
-    //           }[subject2]
-    //         }
-            
-    //       }
-    //       </div>
-    //       )
-    //   }
+        // function App() {
+        //     const subject2 = 'info'
+
+        //     return (
+        //      <div className="App">
+        //        {
+        //          {
+        //             info: <p>상품정보</p>,
+        //             shipping: <p>배송관련</p>,
+        //             refund: <p>환불약관</p>
+        //           }[subject2]
+        //         }
+
+        //       }
+        //       </div>
+        //       )
+        //   }
 
     )
 };
 
-function ChoiceArea(props){
-    return(
+function ChoiceArea(props) {
+    return (
         <div>
             라디오에서 선택된 값에 따라서 보여주는게 다르게 설정하기 state쓰면 될듯
             맨밑에 메모해둔걸로 짜면 될거같다.
@@ -67,20 +76,20 @@ function ChoiceArea(props){
 
 }
 
-function ChoicedArea(props){
+function ChoicedArea(props) {
 
     const cpu = useSelector((state) => { return state });
 
-let Grouped = styled.div`
+    let Grouped = styled.div`
 width :500px;
 margin : auto;`
 
-    return(
+    return (
         <Grouped>
-            
-        <ListGroup>
-        {cpu.recommendList.title}
-        </ListGroup>
+
+            <ListGroup>
+                {cpu.recommendList.title}
+            </ListGroup>
         </Grouped>
     )
 }
@@ -90,7 +99,7 @@ margin : auto;`
 //     cpu : <cpudiv></cpudiv>, 뭐 대충 이런식으로 
 //     refund : <p>환불약관</p>
 //   }
-  
+
 //   function Component() {
 //     var 현재상태 = 'info';
 //     return (
@@ -108,33 +117,22 @@ margin : auto;`
 function Cart(props) {
 
     const cpu = useSelector((state) => { return state });
-    
+
     const history = useHistory();
 
     const disPatch = useDispatch();
-
-
-    const compatibility = ()=>{
-        const array = [...cpu.recommendList];
-        const mainIndex = array.findIndex((a)=>{return a.kinds=== 'main'});
-        
-//         조립리스트에서 메인보드,cpu,ram,그래픽카드,파워 등등을 요소별로 찾고?
-
-// 뭐가 같은지 안같은지를 전부 if문으로 돌리기 뭔가 하드코딩같을 수 있지만 이게 가장 확실하긴 할듯
-
-// 그럼 findIndex 를 해서 배열을 찾은 다음에
-
-// cpu소켓 === 메인보드 소켓
-// cpu pcie === 메인보드 pcie === ssd pcie 
-// 파워 그래픽카드 전력량
-// cpu세대 램ddr
-// 메인보드소켓, 램ddr소켓
-
-// 여기서 안맞는게 있으면 alret 창 띄우기.
-
  
-        
-
+    const compatibility = () => {
+        const array = [...cpu.recommendList];
+        const mainIndex = array.findIndex((a) => { return a.kinds === 'main' });
+        const cpuIndex = array.findIndex((a) => { return a.kinds === 'cpu' });
+        const ramIndex = array.findIndex((a) => { return a.kinds === 'ram' });
+        const ssdIndex = array.findIndex((a) => { return a.kinds === 'ssd' });
+        const hddIndex = array.findIndex((a) => { return a.kinds === 'hdd' });
+        const caseIndex = array.findIndex((a) => { return a.kinds === 'case' });
+        const coolerIndex = array.findIndex((a) => { return a.kinds === 'cooler' });
+        const gpuIndex = array.findIndex((a) => { return a.kinds === 'gpu' });
+        const powerIndex = array.findIndex((a) => { return a.kinds === 'power' });
     }
 
 
@@ -167,20 +165,24 @@ height : 600px;`;
             <Bigdiv>
                 <LeftDiv>
                     <div>
-                        체크박스넣을거임 그 열거형함수로 써볼까함.<br/>
+                        체크박스넣을거임 그 열거형함수로 써볼까함.<br />
                         밑에있는건 이제 css로 조정하기
                     </div>
-                <ListGroup>
-                <SellList></SellList>
-                    
-                </ListGroup>
+                    <ListGroup>
+                        <SellList></SellList>
+
+                    </ListGroup>
                 </LeftDiv>
                 <RightDiv>
                     <span>여기다가는 선택된 state랑 누르면 왼쪽께 바뀌도록</span>
-                {cpu.choicedList.map((a,i)=>{return(
-                    <div>{a.title}</div>
-                )})}  
-                <button onClick={()=>{disPatch({type:'orderCart',payload:cpu.choicedList});history.push('/order')}}>조립끝 사러가기</button>
+                    {cpu.choicedList.map((a, i) => {
+                        return (
+                            <div>{a.title}</div>
+                        )
+                    })}
+                    <span>가격: {cpu.price}원</span>
+
+                    <button onClick={() => { disPatch({ type: 'orderCart', payload: cpu.choicedList }); history.push('/order') }}>조립끝 사러가기</button>
                 </RightDiv>
             </Bigdiv>
 
@@ -190,7 +192,7 @@ height : 600px;`;
 
 }
 
-function SellList(props){
+function SellList(props) {
     const cpu = useSelector((state) => { return state });
     const disPatch = useDispatch()
 
@@ -201,28 +203,30 @@ function SellList(props){
     
     `
 
-    return(
+    return (
         <div>
-            {arraycpu.map((a,i)=>{return(<ListGroup.Item key ={i}>
-                <tr >
-                    <td colSpan={2} rowSpan={2}><img src={arraycpu[i].imgl}></img></td>
-                    
-                    <td>{arraycpu[i].price}원</td>
-                    <td><button onClick={()=>{{history.push(`/detail/${a.id}`)}}}>자세히보기</button></td>
-                </tr>
-                <tr>
-                    
-                    
-                    <td as={Link} to={`/detail/${a.id}`}>{arraycpu[i].title}</td>
-                    <td><button onClick={()=>{disPatch({type:'addchoicedList',payload:a})}}>담기</button></td>
-                </tr>
-                
-                
+            {arraycpu.map((a, i) => {
+                return (<ListGroup.Item key={i}>
+                    <tr >
+                        <td colSpan={2} rowSpan={2}><img src={arraycpu[i].imgl}></img></td>
+
+                        <td>{arraycpu[i].price}원</td>
+                        <td><button onClick={() => { { history.push(`/detail/${a.id}`) } }}>자세히보기</button></td>
+                    </tr>
+                    <tr>
+
+
+                        <td as={Link} to={`/detail/${a.id}`}>{arraycpu[i].title}</td>
+                        <td><button onClick={() => { disPatch({ type: 'addchoicedList', payload: a }) }}>담기</button></td>
+                    </tr>
+
+
                 </ListGroup.Item>
-            )})}
+                )
+            })}
         </div>
     )
-//뭐 보여줄지는 여기서 고르는데 스테이트를 변경하는 방법으로 뭘보여줄건지 바꿀예정
+    //뭐 보여줄지는 여기서 고르는데 스테이트를 변경하는 방법으로 뭘보여줄건지 바꿀예정
 }
 
 export default Assembly;
