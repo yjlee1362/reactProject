@@ -133,6 +133,23 @@ function Cart(props) {
         const coolerIndex = array.findIndex((a) => { return a.kinds === 'cooler' });
         const gpuIndex = array.findIndex((a) => { return a.kinds === 'gpu' });
         const powerIndex = array.findIndex((a) => { return a.kinds === 'power' });
+
+        const Amain = array[mainIndex];
+        const Acpu = array[cpuIndex];
+        const Aram = array[ramIndex];
+        const Assd = array[ssdIndex];
+        const Ahdd = array[hddIndex];
+        const Acase = array[caseIndex];
+        const Acooler = array[coolerIndex];
+        const Agpu = array[gpuIndex];
+        const Apower = array[powerIndex];
+
+        if(Acpu.socket !== Amain.socket){
+            alert('소켓이 호환되지않습니다. 계속 진행하시겠습니까?');
+                    };
+
+                    //이런식으로 호환성체크함수하나만들기.
+
     }
 
 
@@ -182,7 +199,12 @@ height : 600px;`;
                     })}
                     <span>가격: {cpu.price}원</span>
 
-                    <button onClick={() => { disPatch({ type: 'orderCart', payload: cpu.choicedList }); history.push('/order') }}>조립끝 사러가기</button>
+                    <button onClick={() => { disPatch({ 
+                        type: 'orderCart', payload: cpu.choicedList }); 
+                        history.push('/order') }}>조립끝 사러가기
+                        </button>
+                    <button onClick={compatibility}>호환성검사</button>    
+
                 </RightDiv>
             </Bigdiv>
 
