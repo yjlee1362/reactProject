@@ -1,17 +1,17 @@
 const CPU = [{
     id: 0, manu: 'intel', title: '인텔 코어i5-12세대 12600K (엘더레이크)', nano: 10, core: 10,
     thread: 16, clock: 3.7, boostClock: 4.9, tdp: 125, memo: ['ddr4', 'ddr5'], pcie: [5.0, 4.0], igpu: 'UHD770',
-    price: 393600, socket: 1700, imgl: require('./imgs/cpu.0.jpg'), cnt: 1, kinds: 'cpu'
+    price: 393600, socket: '1700', imgl: require('./imgs/cpu.0.jpg'), cnt: 1, kinds: 'cpu'
 },
 {
     id: 1, manu: 'intel', title: '인텔 코어i5-11세대 11400 (로켓레이크S)', nano: 14, core: 6,
     thread: 12, clock: 2.6, boostClock: 4.4, tdp: 65, memo: ['ddr4'], pcie: [4.0], igpu: 'UHD730',
-    price: 221600, socket: 1200, imgl: require('./imgs/cpu.1.jpg'), cnt: 0, kinds: 'cpu'
+    price: 221600, socket: '1200', imgl: require('./imgs/cpu.1.jpg'), cnt: 0, kinds: 'cpu'
 },
 {
     id: 2, manu: 'intel', title: '인텔 코어i5-10세대 10400F (코멧레이크S)', nano: 14, core: 6,
     thread: 12, clock: 2.9, boostClock: 4.3, tdp: 65, memo: ['ddr4'], pcie: [3.0], igpu: null,
-    price: 178220, socket: 1200, imgl: require('./imgs/cpu.2.jpg'), cnt: 0, kinds: 'cpu'
+    price: 178220, socket: '1200', imgl: require('./imgs/cpu.2.jpg'), cnt: 0, kinds: 'cpu'
 },
 {
     id: 3, manu: 'amd', title: 'AMD 라이젠7-4세대 5800X (버미어)', nano: 7, core: 8,
@@ -130,19 +130,55 @@ const cooler = [
     }
 ]
 
-const POWER =[
-
-    {   }
+const POWER = [
+    {
+        id: 27, manu: 'GreatWall', title: 'GreatWall B650H 80PLUS BRONZE 230V EU', price: 61000, cnt: 0, kinds: 'power', imgl: require('./imgs/power.0.jpg'),
+        volt: 650, gua: 'bronze', module: 'none',
+    },
+    {
+        id: 28, manu: 'micronics', title: '마이크로닉스 COOLMAX EXPLORER 750W 80Plus Gold 230V EU 풀모듈러', price: 88510, cnt: 0, kinds: 'power', imgl: require('./imgs/power.1.jpg'),
+        volt: 750, gua: 'gold', module: 'full',
+    },
+    {
+        id: 29, manu: 'micronics', title: '마이크로닉스 Classic II 풀체인지 500W 80PLUS 230V EU', price: 46020, cnt: 0, kinds: 'power', imgl: require('./imgs/power.2.jpg'),
+        volt: 500, gua: 'standard', module: 'none',
+    },
+    {
+        id: 30, manu: 'micronics', title: '마이크로닉스 COOLMAX EXPLORER 850W 80Plus Gold 230V EU 풀모듈러', price: 105940, cnt: 0, kinds: 'power', imgl: require('./imgs/power.3.jpg'),
+        volt: 850, gua: 'gold', module: 'full',
+    }
 ]
 
 const GPU = [
 
-    {  }
+    {
+        id: 31, chipManu: 'nvidia', chipModel: 'gtx30', chipNumber: 'gtx3060', title: 'MSI 지포스 RTX 3060 게이밍 X D6 12GB 트윈프로져8', manu: 'msi', price: 875000, imgl: require('./imgs/gpu.0.jpg'),
+        nano: 8, cnt: 0, memory: 12, kinds: 'gpu', fans: 2
+    },
+    {
+        id: 32, chipManu: 'nvidia', chipModel: 'gtx30', chipNumber: 'gtx3060Ti', title: '이엠텍 지포스 RTX 3060 Ti STORM X Dual OC D6 8GB', manu: 'emtek', price: 1033050, imgl: require('./imgs/gpu.1.jpg'),
+        nano: 8, cnt: 0, memory: 12, kinds: 'gpu', fans: 2
+    },
+    {
+        id: 33, chipManu: 'nvidia', chipModel: 'gtx30', chipNumber: 'gtx3070', title: 'MSI 지포스 RTX 3070 게이밍 Z 트리오 D6 8GB 트라이프로져2 LHR', manu: 'msi', price: 12299300, imgl: require('./imgs/gpu.2.jpg'),
+        nano: 8, cnt: 0, memory: 8, kinds: 'gpu', fans: 3
+    },
+    {
+        id: 34, chipManu: 'nvidia', chipModel: 'gtx30', chipNumber: 'gtx3070Ti', title: '이엠텍 지포스 RTX 3070 Ti BLACK EDITION D6X 8GB', manu: 'emtek', price: 1256700, imgl: require('./imgs/gpu.3.jpg'),
+        nano: 8, cnt: 0, memory: 8, kinds: 'gpu', fans: 3
+    },
+    {
+        id: 35, chipManu: 'nvidia', chipModel: 'gtx30', chipNumber: 'gtx3080', title: 'MSI 지포스 RTX 3080 슈프림 X D6X 10GB 트라이프로져2S LHR', manu: 'msi', price: 1735000, imgl: require('./imgs/gpu.4.jpg'),
+        nano: 8, cnt: 0, memory: 8, kinds: 'gpu', fans: 3
+    },
+    {
+        id: 36, chipManu: 'amd', chipModel: 'rx6', chipNumber: 'rx6600xt', title: 'GIGABYTE 라데온 RX 6600 XT Gaming OC D6 8GB 제이씨현', manu: 'gigabyte', price: 798750, imgl: require('./imgs/gpu.4.jpg'),
+        nano: 7, cnt: 0, memory: 8, kinds: 'gpu', fans: 2
+    },
+    {
+        id: 37, chipManu: 'amd', chipModel: 'rx6', chipNumber: 'rx6800xt', title: 'MSI 라데온 RX 6800 XT 게이밍 X 트리오 D6 16GB 트라이프로져2', manu: 'msi', price: 1491000, imgl: require('./imgs/gpu.5.jpg'),
+        nano: 7, cnt: 0, memory: 16, kinds: 'gpu', fans: 3
+    }
 ]
 
-
-
-
-
-export { CPU, RAM, SSD, mainBoard, HDD, cCase, cooler };
-
+export { CPU, RAM, SSD, mainBoard, HDD, cCase, cooler, POWER, GPU };

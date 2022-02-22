@@ -100,7 +100,7 @@ function compareFunction(state=[],act){
 
 if(act.type==='compareStart'){
 
-    const payloadArray = payload;
+    const payloadArray = act.payload;
     const compareArray = payloadArray.filter()
     // 비교군 만들기
     // detailcomponent 에서 params의 id에서 kinds값을 가져온 후에, 그 값을 전체배열에서
