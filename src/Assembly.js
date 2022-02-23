@@ -19,6 +19,8 @@ function Assembly(props) {
     },[AchoicedList])
 
 
+
+
     return (<div>
         <Cart />
         <RadioBox></RadioBox>
@@ -146,7 +148,8 @@ function Cart(props) {
 
         if(Acpu.socket !== Amain.socket){
             alert('소켓이 호환되지않습니다. 계속 진행하시겠습니까?');
-                    };
+                    }
+                    else{alert('문제없음')}
 
                     //이런식으로 호환성체크함수하나만들기.
 

@@ -45,6 +45,7 @@ function App() {
           <div style={{ display: 'flex' }}>
             <CardS></CardS>
           </div>
+          <GotoAssemble/>
         </Route>
 
 
@@ -121,13 +122,16 @@ function Banner(props) {
 
 function GotoAssemble(props) {
 
+  const disPatch=useDispatch()
+
   const h = useHistory();
 
   //  배너랑 비슷하게 하는데 사이트소개하듯이 뭐 하고 링크를 통해 조립쪽으로갈수있게
 
   return (
     <div>
-      <button onClick={() => { h.push('/assembly') }}></button>
+      <button onClick={() => { h.push('/assembly') }}>조립하러가기</button>
+      <button onClick={()=>{disPatch({type:'recomendAssemble'}); h.push('/assembly')}}>추천컴퓨터정보 받고 조립하기</button>
     </div>
   )
 

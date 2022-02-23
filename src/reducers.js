@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from "redux"
-import { CPU, RAM, SSD, mainBoard, HDD, cCase, cooler } from "./data.js"
+import {  CPU, RAM, SSD, mainBoard, HDD, cCase, cooler, POWER, GPU} from "./data.js"
 
 const CPUs = CPU;
 
@@ -10,6 +10,8 @@ const cntArray = everyThing.sort((a, b) => { return b.cnt - a.cnt });
 const priceArray = everyThing.sort((a,b)=>{return a.price - b.price});
 
 const emptyArray = [];
+
+const assemble = [CPU[3],RAM[0],SSD[1],mainBoard[0],cCase[1],cooler[0],POWER[1],GPU[5]];
 
 
 function recommendList(state = everyThing, act) {
@@ -41,6 +43,11 @@ function cartList(state = emptyArray, act) {
     else { return state }
 }
 
+function recommendPc(state = assemble,act){
+
+
+    return state
+}
 
 
 //조립한거에 추가
@@ -60,6 +67,13 @@ function choicedList(state = [], act) {
             return copyArray
         }
     }
+
+        else if (act.type === 'recomendAssemble'){
+        const copyArray = [...state,...assemble];
+        
+        return copyArray
+
+        }
     return state
 }
 
